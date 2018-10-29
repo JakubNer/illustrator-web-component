@@ -2,14 +2,14 @@
   (:require [cljs.test :refer-macros [deftest is testing]]
             [kundel.component :as s]))
 
-(deftest get-narration-basic
+(deftest get-illustration-basic
   (let [sections '({:flows (:a :b :c)
                     :subsections ({:flows (:x :y :z)}
                                   {:flows (:o)}
                                   {:flows (:l :m :n)})}
                    {:flows (:e :f :g)})]
-    (testing "is a vanilla section setup creating the right narration"
-      (let [result (s/get-narration sections)]
+    (testing "is a vanilla section setup creating the right illustration"
+      (let [result (s/get-illustration sections)]
         (is (= result
                '(
                  {:section
@@ -108,11 +108,11 @@
                   :subsnext nil,
                   :subsprev nil})))))))
 
-(deftest get-narration-no-flows-just-subsections
+(deftest get-illustration-no-flows-just-subsections
   (let [sections '({:subsections ({:flows (:x)})}
                    {:flows (:e)})]
     (testing "is a section setup without flows but with subsections OK?"
-      (let [result (s/get-narration sections)]
+      (let [result (s/get-illustration sections)]
         (is (= result
                '({:section {:subsections ({:flows (:x)})},
                   :subsection {:flows (:x)},
@@ -125,10 +125,10 @@
                   :subsnext nil,
                   :subsprev nil})))))))
 
-(deftest get-narration-one-flow
+(deftest get-illustration-one-flow
   (let [sections '({:flows (:e)})]
     (testing "is a section setup with just one flow OK?"
-      (let [result (s/get-narration sections)]
+      (let [result (s/get-illustration sections)]
         (is (= result
                '({:section {:flows (:e)},
                   :subsection nil,
@@ -136,21 +136,21 @@
                   :subsnext nil,
                   :subsprev nil})))))))
 
-(deftest get-narration-empty
+(deftest get-illustration-empty
   (let [sections '()]
     (testing "is a section setup with just one flow OK?"
-      (let [result (s/get-narration sections)]
+      (let [result (s/get-illustration sections)]
         (is (= result
                nil))))))
 
-(deftest get-narration-keyframe-basic
+(deftest get-illustration-keyframe-basic
   (let [sections '({:flows (:a :b :c)
                     :subsections ({:flows (:x :y :z)}
                                   {:flows (:o)}
                                   {:flows (:l :m :n)})}
                    {:flows (:e :f :g)})
-        narration (s/get-narration sections)]
+        illustration (s/get-illustration sections)]
     (testing "ensure we can get keyframe of flows"
-        (is (= 0 (s/get-narration-keyframe narration :a)))
-        (is (= 3 (s/get-narration-keyframe narration :x)))
-        (is (= 6 (s/get-narration-keyframe narration :o))))))
+        (is (= 0 (s/get-illustration-keyframe illustration :a)))
+        (is (= 3 (s/get-illustration-keyframe illustration :x)))
+        (is (= 6 (s/get-illustration-keyframe illustration :o))))))

@@ -25,8 +25,8 @@
   {:builds
    {:dev {:source-paths ["src" "test"]
           :figwheel true
-          :compiler {:main kundel.narrator
-                     :output-to "resources/public/js/narrator.js"
+          :compiler {:main kundel.illustrator
+                     :output-to "resources/public/js/illustrator.js"
                      :output-dir "resources/public/js/out/"
                      :asset-path "js/out"
                      :optimizations :none
@@ -35,7 +35,7 @@
                      :preloads [devtools.preload]
                      :external-config {:devtools/config {:features-to-install :all}}}}
     :min {:source-paths ["src"]
-          :compiler {:output-to "resources/public/js/narrator.js"
+          :compiler {:output-to "resources/public/js/illustrator.js"
                      :output-dir "resources/public/js/min-out/"
                      :asset-path "js/min-out"
                      :optimizations   :advanced

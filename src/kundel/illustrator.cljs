@@ -1,4 +1,4 @@
-(ns kundel.narrator
+(ns kundel.illustrator
   (:require
     [goog.object :as go]
     [reagent.core :as r]
@@ -11,7 +11,7 @@
 ;; Registration occurs by calling the exported 'register' below.
 
 ;; The registered element will have the following name:
-(def element-name "narrator-component")
+(def element-name "illustrator-component")
 
 ;; The registered element works with the following attributes.
 ;;
@@ -29,8 +29,6 @@
 ;; Modify these to suite your element:
 (defn ctor-attrs []
   {"sections" (atom nil)
-   "paused" (atom nil)
-   "trigger" (r/atom nil) ;; just change this in some fashion to trigger, update as timestamp?
    "font-size-min--section" (atom nil)
    "font-size-max--section" (atom nil)})
 
@@ -42,14 +40,14 @@
 ;;    #(= "true" (str %2))        ;; parses boolean
 ;; This list's keys must match the 'attrs' list.
 (def fns {"sections" #(js->clj (.parse js/JSON %2) :keywordize-keys true)
-          "paused" #(= "true" (str %2))
-          "trigger" #(identity true)
           "font-size-min--section" #(do %2)
           "font-size-max--section" #(do %2)})
 
-;; events:  "timeline" :: event detail is {"id":string, "playing":boolean}.
+;; events:  "timeline" :: event detail is {"id":string}.
 ;;
-;; timeline is at "id" provided and is currently playing or paused.
+;; timeline is at "id" provided
+;; "id" of "PREVIOUS_BEFORE_FIRST" means an attempt to go to a previous flow while at first flow was triggered
+;; "id" of "NEXT_AFTER_LAST" means an attempt to go to next flow while at last flow was triggered
 
 
 
@@ -87,8 +85,17 @@
       (go/extend proto proto')
       (.registerElement js/document element-name #js{"prototype" proto}))))
 
-(defn ^:export toggle-play-state [this]
-  (c/toggle-play-state this))
+(defn ^:export toggle [this]
+  (c/toggle this))
+
+(defn ^:export goto-start [this]
+  (c/goto-start this))
+
+(defn ^:export goto-next [this]
+  (c/goto-next this))
+
+(defn ^:export goto-previous [this]
+  (c/goto-previous this))
 
 (defn ^:export goto-section [this id]
   (c/goto-section this id))

@@ -3,14 +3,14 @@
 (defn get-styles [font-min font-max id]
   (str "
 
-  .narrator-frame {
+  .illustrator-frame {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
   }
 
-  .narrator-sections {
+  .illustrator-sections {
     height: calc(100% - 32px);
     width: 100%;
     display: flex;
@@ -18,7 +18,7 @@
     justify-content: center;
   }
 
-  .narrator-buttons {
+  .illustrator-buttons {
     height: 74px;
     width: 100%;
     display: flex;
@@ -28,25 +28,22 @@
     position: relative;
   }
 
-  .narrator-buttons-progress {
-    position: absolute;
-    width: 0%;
-    height: 5px;
-    top: -15px;
-    left: 0px;
-    background: #D0D0D0;
-  }
-
-  @keyframes narration-progress {
+  @keyframes illustration-progress {
     0%   {
-      width: 0%;
+      -webkit-transform: rotate(0deg); ;
+      -moz-transform: rotate(0deg); ;
+      -o-transform: rotate(0deg); ;
+      transform: rotate(0deg); ;
     }
     100% {
-      width: 100%;
+      -webkit-transform: rotate(360deg); ;
+      -moz-transform: rotate(360deg); ;
+      -o-transform: rotate(360deg); ;
+      transform: rotate(360deg); ;
     }
   }
 
-  .narrator-button {
+  .illustrator-button {
     height: 64px;
     margin-left: 20px;
     margin-right: 20px;
@@ -57,7 +54,7 @@
     -o-transition: max-height 0.25s ease-out, margin-left 0.25s ease-out, margin-right 0.25s ease-out;
   }
 
-  .narrator-sections-center {
+  .illustrator-sections-center {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -65,11 +62,11 @@
     height: 0px;
   }
 
-  #narrator-sections-center-overlay" id " {
+  #illustrator-sections-center-overlay" id " {
     pointer-events: none;
   }
 
-  .narrator-sections-center-play {
+  .illustrator-sections-center-play {
     position: absolute;
     top: -128px;
     left: -128px;
@@ -82,7 +79,7 @@
     animation: toggle .5s ease-out;
   }
 
-  .narrator-sections-center-pause {
+  .illustrator-sections-center-pause {
     position: absolute;
     top: -128px;
     left: -128px;
@@ -106,7 +103,7 @@
     }
   }
 
-  .narrator-section {
+  .illustrator-section {
     -webkit-transition: font-size .25s ease-in-out, line-height .25s ease-in-out;
     -moz-transition: font-size .25s ease-in-out, line-height .25s ease-in-out;
     -o-transition: font-size .25s ease-in-out, line-height .25s ease-in-out;
@@ -116,25 +113,25 @@
     margin-top: 1em;
   }
 
-  .narrator-section.narrator-current {
+  .illustrator-section.illustrator-current {
     font-size: " font-max ";
     line-height: 1em;
   }
 
-  .narrator-section:not(.narrator-current) {
+  .illustrator-section:not(.illustrator-current) {
     font-size: " font-min ";
     line-height: 1em;
   }
 
-  .narrator-section:not(.narrator-current) .narrator-subsection-frame .narrator-subsection-frame-hider {
+  .illustrator-section:not(.illustrator-current) .illustrator-subsection-frame .illustrator-subsection-frame-hider {
     pointer-events: none;
   }
 
-  .narrator-subsection-frame-hider {
+  .illustrator-subsection-frame-hider {
     overflow: hidden;
   }
 
-  .narrator-subsection-frame {
+  .illustrator-subsection-frame {
     position: relative;
     max-height: 0px;
     -webkit-transition: max-height .25s ease-out;
@@ -151,15 +148,15 @@
     margin-bottom: .5em;
   }
 
-  .narrator-section:not(.narrator-current) .narrator-subsection-frame {
+  .illustrator-section:not(.illustrator-current) .illustrator-subsection-frame {
     max-height: 0px;
   }
 
-  .narrator-section.narrator-current .narrator-subsection-frame {
+  .illustrator-section.illustrator-current .illustrator-subsection-frame {
     max-height: 500px;
   }
 
-  .narrator-subsection-frame-left {
+  .illustrator-subsection-frame-left {
     position: absolute;
     height: 64px;
     left: -48px;
@@ -173,7 +170,7 @@
     transition: opacity .25s ease-out;
   }
 
-  .narrator-subsection-frame-right {
+  .illustrator-subsection-frame-right {
     position: absolute;
     height: 64px;
     right: -48px;
@@ -187,47 +184,47 @@
     transition: opacity .25s ease-out;
   }
 
-  .narrator-sections.narrating .narrator-subsection-frame-left {
+  .illustrator-sections.narrating .illustrator-subsection-frame-left {
     cursor: default;
     opacity: 0;
   }
 
-  .narrator-section:not(.narrator-current) .narrator-subsection-frame-left {
+  .illustrator-section:not(.illustrator-current) .illustrator-subsection-frame-left {
     cursor: default;
     opacity: 0;
   }
 
-  .narrator-subsection-frame:not(.has-previous-subsection) .narrator-subsection-frame-left {
+  .illustrator-subsection-frame:not(.has-previous-subsection) .illustrator-subsection-frame-left {
     cursor: default;
     opacity: 0;
   }
 
-  .narrator-sections:not(.narrating) .narrator-section.narrator-current .narrator-subsection-frame.has-previous-subsection .narrator-subsection-frame-left {
+  .illustrator-sections:not(.narrating) .illustrator-section.illustrator-current .illustrator-subsection-frame.has-previous-subsection .illustrator-subsection-frame-left {
     cursor: pointer;
     opacity: 1;
   }
 
-  .narrator-sections.narrating .narrator-subsection-frame-right {
+  .illustrator-sections.narrating .illustrator-subsection-frame-right {
     cursor: default;
     opacity: 0;
   }
 
-  .narrator-section:not(.narrator-current) .narrator-subsection-frame-right {
+  .illustrator-section:not(.illustrator-current) .illustrator-subsection-frame-right {
     cursor: default;
     opacity: 0;
   }
 
-  .narrator-subsection-frame:not(.has-next-subsection) .narrator-subsection-frame-right {
+  .illustrator-subsection-frame:not(.has-next-subsection) .illustrator-subsection-frame-right {
     cursor: default;
     opacity: 0;
   }
 
-  .narrator-sections:not(.narrating) .narrator-section.narrator-current .narrator-subsection-frame.has-next-subsection .narrator-subsection-frame-right {
+  .illustrator-sections:not(.narrating) .illustrator-section.illustrator-current .illustrator-subsection-frame.has-next-subsection .illustrator-subsection-frame-right {
     cursor: pointer;
     opacity: 1;
   }
 
-  .narrator-susbection-carousel {
+  .illustrator-susbection-carousel {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
@@ -239,7 +236,7 @@
     transition: transform .25s ease-out;
   }
 
-  .narrator-subsection {
+  .illustrator-subsection {
     position: relative;
     display: inline-block;
     width: 100%;
@@ -253,23 +250,23 @@
     transition: opacity .25s ease-out;
   }
 
-  .narrator-section:not(.narrator-current) .narrator-subsection {
+  .illustrator-section:not(.illustrator-current) .illustrator-subsection {
     opacity: 0;
   }
 
-  .narrator-section.narrator-current .narrator-subsection {
+  .illustrator-section.illustrator-current .illustrator-subsection {
     opacity: 1
   }
 
-  .narrator-flow {
+  .illustrator-flow {
     cursor: pointer;
   }
 
-  .narrator-flow:not(.narrator-current) {
+  .illustrator-flow:not(.illustrator-current) {
     color: #778899;
   }
 
-  .narrator-flow.narrator-current {
+  .illustrator-flow.illustrator-current {
     color: #000000;
   }
   "))

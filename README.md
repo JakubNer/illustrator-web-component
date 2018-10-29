@@ -1,10 +1,11 @@
-# Narrator W3C Custom Element
+# Illustrator W3C Custom Element
 
 ## Summary
 
-A narrator Web component, animating text in and out of view to create a cohesive timeline for presenting ideas and
-driving other visual component animations.  The animated text is given a period of time to show on screen; hence this
-animation is termed "narration".
+An "illustrator" Web component, animating text in and out of view to create a cohesive timeline for presenting ideas and
+driving other visual component animations.  
+
+This is based off of the [narrator component](https://github.com/JakubNer/narrator-web-component) except all the "playing" features are removed: trick-play on the timeline is manual.
 
 The component enlarges and highlights text/html as it's flowing in and out of the viewer's attention.  As content flows in and out
 of the viewer's attention, events are triggered to let other portions of the Web page know where--in the timeline of
@@ -20,15 +21,14 @@ The following capture is the component running from [resources/pubic/index.html]
 
 ![demo](https://github.com/JakubNer/narrator-web-component/blob/master/assets/demo.gif)
 
-The component provides a play/pause button.  All sections are clickable; a click jumps to the
-section's start time in the timeline and pauses the narration.  The play/pause button can be
-clicked to resume the narration.  As the play/pause state of narration changes, an event with the current flow's "id"
-and the current "playing" status is triggered.
+The component provides three buttons:  'previous', 'next', 'replay'.  The 'next' and 'previous' buttons move between flows.  The 'replay' button re-issues the current flow's event.  
+
+All sections are clickable; a click jumps to the section's flow and issues an event.  
 
 If a section contains flows in subsections, the subsections' flows appear in sequence after all of the root sections
 flows finish "narrating".
 
-Compnent registered as "narrator".
+Compnent registered as "illustrator".
 
 ### Attributes
 
@@ -56,26 +56,6 @@ While a section is being narrated all other sections are rendered at minimal fon
 
 Wile a subsection is being narrated both the section and sub-section are rendered at maximum font-size.
 
-#### paused
-
-Control trick play, "true" if narration should be paused, "false" if should be playing.  Only takes effect when re-triggering narration.
-
-To control trick play while narration occuring, do:
-
-```
-kundel.narrator.toggle-play-state(narrator);
-```
-
-#### trigger
-
-Change the value of the trigger attribute to restart the narration.
-
-```
-kundel.narrator.changed(narrator, "trigger", null, new Date().getTime());
-```
-
-Passing a new `Date` object to the attribute `changed` method will restart narration.
-
 #### font-size-min--section
 
 Font size to render sections that are not currently being narrated.
@@ -90,10 +70,42 @@ Font size to render the currently narrated section and subsection, if any.
 
 #### goto_section
 
-Go to a specific section (by 'id') and pause narration--method only:
+Go to a specific section (by 'id') and pause illustration--method only:
 
 ```
 kundel.narrator.goto_section(narrator,'nam')
+```
+
+#### toggle
+
+Re-toggle current section (by 'id') as if "replay" button pressed--method only:
+
+```
+kundel.narrator.toggle(narrator)
+```
+
+#### goto_first
+
+Go to first section--method only:
+
+```
+kundel.narrator.goto_first(narrator)
+```
+
+#### goto_next
+
+Go to next section--method only:
+
+```
+kundel.narrator.goto_next(narrator)
+```
+
+#### goto_previous
+
+Go to previous section--method only:
+
+```
+kundel.narrator.goto_previous(narrator)
 ```
 
 ## Dev Run Application:

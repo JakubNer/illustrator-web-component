@@ -34,18 +34,18 @@
         }
     </style>
     <body>
-        <script src="js/narrator.js"></script>
-        <script>kundel.narrator.register()</script>
+        <script src="js/illustrator.js"></script>
+        <script>kundel.illustrator.register()</script>
         <div id="screen">
             <div id="left">
                 <h1 id="feedback"></h1>
             </div>
             <div id="right">
-                <div id="narrator"></div>
+                <div id="illustrator"></div>
             </div>
         </div>
         <script>
-            var narrator = document.getElementById('narrator');
+            var illustrator = document.getElementById('illustrator');
 
             // List of lists.  Each record is a pair (list) of page titles and event strings.
             // Number of pairs is the number of pages.
@@ -60,7 +60,7 @@
                          },
                          {
                             "html":" Duis scelerisque nulla eget enim dignissim pretium.",
-                            "seconds":2,
+                            "seconds":0,
                             "id":"duis"
                          },
                          {
@@ -79,7 +79,7 @@
                                },
                                {
                                   "html":" Curabitur faucibus malesuada neque, nec sollicitudin urna dignissim eu.",
-                                  "seconds":2,
+                                  "seconds":0,
                                   "id":"curabitur"
                                },
                                {
@@ -210,20 +210,18 @@
                    }
                 ]
 
-            console.log("catching on :: " + narrator);
+            console.log("catching on :: " + illustrator);
             // should be the event string from my_pages configuration.
-            narrator.addEventListener('timeline', function(e) {
-                console.log("narrator timeline 'id': ", e.id);
-                console.log("narrator timeline 'playing': ", e.playing);
-                document.getElementById('feedback').innerHTML = '<h4 style="color: grey; font-variant: small-caps;">Event Info From Component</h4><p><span style="color: grey;">event id:</span> ' + e.id + '</p><p><span style="color: grey;">is narration playing:</span> ' + e.playing + '</p>';
+            illustrator.addEventListener('timeline', function(e) {
+                console.log("illustrator timeline 'id': ", e.id);
+                document.getElementById('feedback').innerHTML = '<h4 style="color: grey; font-variant: small-caps;">Event Info From Component</h4><p><span style="color: grey;">event id:</span> ' + e.id + '</p>';
             }, true);
 
-            narrator.setAttribute("sections", JSON.stringify(my_sections));
-            narrator.setAttribute("paused", "false");
-            narrator.setAttribute("font-size-min--section", "1vmin");
-            narrator.setAttribute("font-size-max--section", "2.5vmin");
-            kundel.narrator.created(narrator);
-            kundel.narrator.changed(narrator, "trigger", null, new Date().getTime());
+            illustrator.setAttribute("sections", JSON.stringify(my_sections));
+            illustrator.setAttribute("font-size-min--section", "1vmin");
+            illustrator.setAttribute("font-size-max--section", "2.5vmin");
+            kundel.illustrator.created(illustrator);
+            kundel.illustrator.goto_start(illustrator);
         </script>
     </body>
 </html>
