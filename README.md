@@ -17,9 +17,9 @@ that sections are enlarged to bring viewer's attention to all the "flows" it con
 
 As each "flow" is highlighted it fires an event with it's "id".
 
-The following capture is the component running from [resources/pubic/index.html](https://github.com/JakubNer/narrator-web-component/blob/master/resources/public/index.html):
+The following capture is the component running from [resources/pubic/index.html](https://github.com/JakubNer/illustrator-web-component/blob/master/resources/public/index.html):
 
-![demo](https://github.com/JakubNer/narrator-web-component/blob/master/assets/demo.gif)
+![demo](https://github.com/JakubNer/illustrator-web-component/blob/master/assets/demo.gif)
 
 The component provides three buttons:  'previous', 'next', 'replay'.  The 'next' and 'previous' buttons move between flows.  The 'replay' button re-issues the current flow's event.  
 
@@ -73,7 +73,7 @@ Font size to render the currently narrated section and subsection, if any.
 Go to a specific section (by 'id') and pause illustration--method only:
 
 ```
-kundel.narrator.goto_section(narrator,'nam')
+kundel.illustrator.goto_section(illustrator,'nam')
 ```
 
 #### toggle
@@ -81,15 +81,15 @@ kundel.narrator.goto_section(narrator,'nam')
 Re-toggle current section (by 'id') as if "replay" button pressed--method only:
 
 ```
-kundel.narrator.toggle(narrator)
+kundel.illustrator.toggle(illustrator)
 ```
 
-#### goto_first
+#### goto_start
 
 Go to first section--method only:
 
 ```
-kundel.narrator.goto_first(narrator)
+kundel.illustrator.goto_start(illustrator)
 ```
 
 #### goto_next
@@ -97,16 +97,20 @@ kundel.narrator.goto_first(narrator)
 Go to next section--method only:
 
 ```
-kundel.narrator.goto_next(narrator)
+kundel.illustrator.goto_next(illustrator)
 ```
+
+If already at end, event "id" "NEXT_AFTER_LAST" is issued.
 
 #### goto_previous
 
 Go to previous section--method only:
 
 ```
-kundel.narrator.goto_previous(narrator)
+kundel.illustrator.goto_previous(illustrator)
 ```
+
+If already at the beginning, event "id" "PREVIOUS_BEFORE_FIRST" is issued.
 
 ## Dev Run Application:
 

@@ -219,10 +219,14 @@
   (set-keyframe this 0))
 
 (defn goto-next [this]
-  (set-keyframe this (min (- (count @(illustration this)) 1) (+ @(keyframe this) 1))))
+  (if (>= (- (count @(illustration this)) 1) (+ @(keyframe this) 1))
+    (set-keyframe this (+ @(keyframe this) 1))
+    (fire-event this "NEXT_AFTER_LAST")))
 
 (defn goto-previous [this]
-  (set-keyframe this (max 0 (- @(keyframe this) 1))))
+  (if (> 0 (- @(keyframe this) 1))
+    (fire-event this "PREVIOUS_BEFORE_FIRST")
+    (set-keyframe this (- @(keyframe this) 1))))
 
 ;;
 ;; Rendered components
