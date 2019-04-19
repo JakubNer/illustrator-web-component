@@ -287,7 +287,7 @@
         (when @(next-hint this) 
           [:div {:style {:font-size "12px"
                          :color "grey"}} 
-            [:span @(next-hint this)]])]]]))
+            [:span {:id "next-button-label-hint"} @(next-hint this)]])]]]))
 
 
 (defn render-sections [this sections]
