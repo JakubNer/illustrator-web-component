@@ -29,6 +29,7 @@
 ;; Modify these to suite your element:
 (defn ctor-attrs []
   {"sections" (atom nil)
+   "next-hint" (atom nil)
    "font-size-min--section" (atom nil)
    "font-size-max--section" (atom nil)})
 
@@ -40,6 +41,7 @@
 ;;    #(= "true" (str %2))        ;; parses boolean
 ;; This list's keys must match the 'attrs' list.
 (def fns {"sections" #(js->clj (.parse js/JSON %2) :keywordize-keys true)
+          "next-hint" #(if %2 (str %2) nil)
           "font-size-min--section" #(do %2)
           "font-size-max--section" #(do %2)})
 
